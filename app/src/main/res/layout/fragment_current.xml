@@ -31,10 +31,11 @@
                 android:text="@string/textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/temperature" android:layout_weight="1"
-                android:textSize="45sp"/>
-        <ImageView
+                android:textSize="45sp" android:textAlignment="center"/>
+        <com.zlobrynya.testkotlin.tools.WeatherImageView
                 android:layout_width="16dp"
-                android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
+                android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/imageWeatherView"
                 android:layout_weight="1"/>
         <Space
                 android:layout_width="wrap_content"

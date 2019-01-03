@@ -1,7 +1,6 @@
-package com.zlobrynya.testkotlin
+package com.zlobrynya.testkotlin.tools
 
 import com.zlobrynya.testkotlin.jacksonClass.ResponseForecast
-import com.zlobrynya.testkotlin.jacksonClass.Weather
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -27,9 +26,10 @@ class WeatherClient private constructor() {
 
     companion object {
         private var instance: WeatherClient? = null
-        fun getInstance(): WeatherClient{
+        fun getInstance(): WeatherClient {
             if (instance == null)
-                instance = WeatherClient()
+                instance =
+                        WeatherClient()
             return instance as WeatherClient
         }
     }

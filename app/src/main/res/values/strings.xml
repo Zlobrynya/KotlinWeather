@@ -13,8 +13,29 @@
     <string name="overcast">Облачность:</string>
     <string name="km_h">Км/ч</string>
     <string name="mp_h">Миля/ч</string>
-    <string name="mb">Mбар</string>
+    <string name="mb">мм рт.ст.</string>
     <string name="mm">Мм</string>
     <string name="in">Дюймов</string>
+
+    <!-- direction wind -->
+    <string name="N">Север</string>
+    <string name="NNE">Северо-северо-восток</string>
+    <string name="NE">Северо-восток</string>
+    <string name="ENE">Северо-северо-восток</string>
+    <string name="E">Восток</string>
+    <string name="ESE">Востоко-юго-восток</string>
+    <string name="SE">Юго-восток</string>
+    <string name="SSE">Юго-юго-восток</string>
+    <string name="S">Юг</string>
+    <string name="SSW">Юго-юго-запад</string>
+    <string name="SW">Юго-запад</string>
+    <string name="W">Запад</string>
+    <string name="WNW">Западо-северо-запад</string>
+    <string name="NW">Северо-запад</string>
+    <string name="NNW">Северо-северо-запад</string>
+    
+    <!-- another string -->
+    <string name="today">Сегодня</string>
+    <string name="tomorrow">Завтра</string>
 
 </resources>

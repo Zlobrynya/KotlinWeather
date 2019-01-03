@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.zlobrynya.testkotlin.jacksonClass.current.Current
 import com.zlobrynya.testkotlin.rxbus.RxBus
 import com.zlobrynya.testkotlin.rxbus.RxEvent
+import com.zlobrynya.testkotlin.tools.WeatherImageView
 import io.reactivex.disposables.Disposable
 
 // Цельсия \u2103
@@ -34,6 +35,7 @@ private constructor(): Fragment() {
     private lateinit var precipitationDesignation: TextView
     private lateinit var humidity: TextView
     private lateinit var overcast: TextView
+    private lateinit var imageView: WeatherImageView
 
     private var bSI = true;
 
@@ -52,10 +54,12 @@ private constructor(): Fragment() {
         precipitationDesignation = v.findViewById(R.id.precipitation_designation) as TextView
         humidity = v.findViewById(R.id.humidity) as TextView
         overcast = v.findViewById(R.id.overcast) as TextView
+        imageView = v.findViewById(R.id.imageWeatherView) as WeatherImageView
 
         disposable = RxBus.listen(RxEvent.EventForecastWeather::class.java).subscribe({
-            println("Testing")
             setTextView(it.responseForecast.current!!)
+            location.text = it.responseForecast.location?.name
+            imageView.loadImage("https:" + it.responseForecast.current!!.condition?.icon!!)
         })
         return v
     }
@@ -63,14 +67,13 @@ private constructor(): Fragment() {
     @SuppressLint("SetTextI18n")
     fun setTextView(current: Current){
         condition.text = current.condition?.text
-        windDerection.text = current.windDir.toString()
+        windDerection.text = getString(resources.getIdentifier(current.windDir.toString(),"string", context!!.packageName))
         humidity.text = current.humidity.toString()
         overcast.text = current.cloud.toString()
-        location.text = "Петрозаводск"
         if (bSI){
             temperature.text = current.tempC.toString() + " \u2103"
             fellslike.text = current.feelslikeC.toString() + " \u2103"
-            pressure.text = current.pressureMb.toString()
+            pressure.text = String.format("%.2f", current.pressureMb*0.750062)
             precipitation.text = current.precipMm.toString()
             wind.text = current.windKph.toString()
             windDesignation.text = getString(R.string.km_h)

@@ -1,4 +1,4 @@
-package com.zlobrynya.testkotlin
+package com.zlobrynya.testkotlin.tools
 
 import com.zlobrynya.testkotlin.jacksonClass.Weather
 import com.zlobrynya.testkotlin.jacksonClass.ResponseForecast

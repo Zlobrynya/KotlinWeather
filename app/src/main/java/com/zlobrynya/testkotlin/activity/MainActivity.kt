@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.zlobrynya.testkotlin.R
 import com.zlobrynya.testkotlin.rxbus.RxBus
-import com.zlobrynya.testkotlin.WeatherClient
+import com.zlobrynya.testkotlin.tools.WeatherClient
 import com.zlobrynya.testkotlin.jacksonClass.ResponseForecast
 import com.zlobrynya.testkotlin.rxbus.RxEvent
 import io.reactivex.android.schedulers.AndroidSchedulers

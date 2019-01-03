@@ -1,24 +1,24 @@
 package com.zlobrynya.testkotlin.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import com.zlobrynya.testkotlin.R
+import com.zlobrynya.testkotlin.rxbus.RxBus
 import com.zlobrynya.testkotlin.WeatherClient
-import com.zlobrynya.testkotlin.jacksonClass.current.Weather
-import rx.Observer
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import com.zlobrynya.testkotlin.jacksonClass.ResponseForecast
+import com.zlobrynya.testkotlin.rxbus.RxEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
-//https://darksky.net/dev/account
-//61.79,34.39/
-//b90f6a39e440417da359ad73549ae4d2
-//https://api.darksky.net/forecast/b90f6a39e440417da359ad73549ae4d2/61.79,34.39/?units=si&lang=ru
+//   www.apixu.com/doc/current.aspx
 
 class MainActivity : AppCompatActivity() {
-    private var subscription: Subscription? = null
+    private var disposable: Disposable? = null
     lateinit var textView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,33 +28,56 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnClick(view :View){
-        getStarredRepos("fca70d378f7b4068bcf161344181912", "Petrozavodsk")
+        val activity : Intent = Intent(this, WeatherActiviry::class.java)
+        startActivity(activity)
+        getStarredRepos("fca70d378f7b4068bcf161344181912", "Petrozavodsk",7)
     }
 
     override fun onDestroy() {
-        if (subscription != null && !subscription!!.isUnsubscribed()) {
-            subscription!!.unsubscribe()
-        }
+
         super.onDestroy()
     }
 
-    private fun getStarredRepos(key: String, loc: String = "") {
-        subscription = WeatherClient.getInstance()
-            .getStarredRepos(key, loc)?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe(object : Observer<Weather> {
+    private fun getStarredRepos(key: String, loc: String = "", day: Int) {
+        /*subscription = WeatherClient.getInstance()
+            .getStarredRepos(key, loc)?.subscribe(object : Observer<Weather> {
                 override fun onError(e: Throwable?) {
                     e?.fillInStackTrace()
                     println(e.toString())
                 }
 
                 override fun onNext(t: Weather?) {
-                    println(t?.location?.name)
+                    println(t!!.location!!.country)
+                    RxBus.send(RxEvent.EventForecastWeather(t.current!!))
                 }
 
                 override fun onCompleted() {
                     println("Complited")
                 }
             })
+        subscription = WeatherClient.getInstance().getStarredRepos(key,loc)?.subscribeOn(Schedulers.newThread())
+        ?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<Weather> {
+
+            })*/
+        WeatherClient.getInstance().getStarredRepos(key,loc,day)?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<ResponseForecast>{
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+
+                }
+
+                override fun onNext(t: ResponseForecast) {
+                    RxBus.send(RxEvent.EventForecastWeather(t))
+                }
+
+                override fun onError(e: Throwable) {
+                    println(e.toString())
+                }
+
+            })
     }
 }
+

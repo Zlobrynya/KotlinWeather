@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.zlobrynya.testkotlin.jacksonClass.Condition
+import com.zlobrynya.testkotlin.jacksonClass.current.Condition
 
 //auto generated http://www.jsonschema2pojo.org/
 

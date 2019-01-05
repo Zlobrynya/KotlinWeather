@@ -29,6 +29,8 @@ class Forecastday {
     @get:JsonProperty("astro")
     @set:JsonProperty("astro")
     var astro: Astro? = null
+
+    var visibility: Boolean = false
     @JsonIgnore
     private val additionalProperties = HashMap<String, Any>()
 

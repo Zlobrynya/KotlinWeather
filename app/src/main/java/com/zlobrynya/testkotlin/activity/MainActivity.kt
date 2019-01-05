@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun OnClick(view :View){
+        getStarredRepos("fca70d378f7b4068bcf161344181912", "Petrozavodsk",7)
         val activity : Intent = Intent(this, WeatherActiviry::class.java)
         startActivity(activity)
-        getStarredRepos("fca70d378f7b4068bcf161344181912", "Petrozavodsk",7)
     }
 
     override fun onDestroy() {
@@ -59,10 +59,11 @@ class MainActivity : AppCompatActivity() {
         ?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<Weather> {
 
             })*/
+        println("getStarredRepos")
         WeatherClient.getInstance().getStarredRepos(key,loc,day)?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())?.subscribe(object : Observer<ResponseForecast>{
                 override fun onComplete() {
-
+                    println("Complete")
                 }
 
                 override fun onSubscribe(d: Disposable) {

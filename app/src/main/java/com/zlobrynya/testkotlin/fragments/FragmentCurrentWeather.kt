@@ -67,6 +67,7 @@ private constructor(): Fragment() {
     @SuppressLint("SetTextI18n")
     fun setTextView(current: Current){
         condition.text = current.condition?.text
+        println(current.windDir)
         windDerection.text = getString(resources.getIdentifier(current.windDir.toString(),"string", context!!.packageName))
         humidity.text = current.humidity.toString()
         overcast.text = current.cloud.toString()

@@ -34,6 +34,13 @@ private constructor(): Fragment() {
             adapterForecastWeather.addAll(it.responseForecast.forecast!!.forecastday)
             adapterForecastWeather.notifyDataSetChanged()
         })
+
+        listView.setOnItemClickListener  { parent, view, position, id ->
+            val forecastWeather = adapterForecastWeather.getItem(position)
+            forecastWeather.visibility = !forecastWeather.visibility
+            adapterForecastWeather.notifyDataSetChanged()
+        }
+
         return v
     }
 

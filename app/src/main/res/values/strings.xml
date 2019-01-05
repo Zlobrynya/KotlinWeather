@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- layout fragment_current -->
     <string name="app_name">testKotlin</string>
     <string name="textview">TextView</string>
@@ -29,6 +29,7 @@
     <string name="S">Юг</string>
     <string name="SSW">Юго-юго-запад</string>
     <string name="SW">Юго-запад</string>
+    <string name="WSW">Западо-юго-запад	</string>
     <string name="W">Запад</string>
     <string name="WNW">Западо-северо-запад</string>
     <string name="NW">Северо-запад</string>
@@ -36,6 +37,6 @@
     
     <!-- another string -->
     <string name="today">Сегодня</string>
-    <string name="tomorrow">Завтра</string>
+    <string name="tomorrow" tools:ignore="ExtraTranslation">Завтра</string>
 
 </resources>

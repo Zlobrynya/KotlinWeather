@@ -2,9 +2,6 @@ package com.zlobrynya.testkotlin.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Location
-import android.os.Build
-import android.support.annotation.RequiresApi
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +11,6 @@ import android.widget.TextView
 import com.zlobrynya.testkotlin.R
 import com.zlobrynya.testkotlin.jacksonClass.forecast.Forecastday
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 class AdapterForecastWeather(context: Context?, resource: Int) :
     ArrayAdapter<Forecastday>(context, resource) {
